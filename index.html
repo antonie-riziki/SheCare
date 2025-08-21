@@ -1,0 +1,2187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+  <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SheCare</title>
+    <meta name="description" content="SheCare is a discreet, accessible AI health companion for women, available 24/7 through WhatsApp. Get personalized health guidance, track symptoms, and access reliable medical information in a safe, private environment.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SheCare - Your AI Health Companion on WhatsApp">
+    <meta property="og:description" content="Discreet, accessible AI health support for women available 24/7 through WhatsApp.">
+    <meta property="og:image" content="https://placeholder-for-shecare-og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SheCare">
+    <meta name="twitter:description" content="Discreet, accessible AI health support for women available 24/7 through WhatsApp.">
+    <meta name="twitter:image" content="https://placeholder-for-shecare-og-image.jpg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- TODO: Add real favicon -->
+    <!-- <link rel="icon" type="image/x-icon" href="/favicon.ico"> -->
+    
+    <style>
+        /* CSS Variables - Brand Palette */
+        :root {
+            --color-coral: #FF5C8D;
+            --color-orchid: #9B5DE5;
+            --color-teal: #00C2A8;
+            --color-amber: #FFD166;
+            --color-offwhite: #F9F9F9;
+            --color-ink: #0F1020;
+            --color-muted: #6B7280;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--color-coral), var(--color-orchid));
+            --gradient-teal: linear-gradient(135deg, var(--color-teal), #00A693);
+            --gradient-hero: linear-gradient(135deg, rgba(255, 92, 141, 0.1), rgba(0, 194, 168, 0.1));
+            
+            /* Spacing Scale */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+            
+            /* Typography */
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(15, 16, 32, 0.1);
+            --shadow-md: 0 4px 12px rgba(15, 16, 32, 0.15);
+            --shadow-lg: 0 8px 24px rgba(15, 16, 32, 0.2);
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+        }
+        
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--color-ink);
+            background-color: var(--color-offwhite);
+            overflow-x: hidden;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: var(--space-sm);
+        }
+        
+        h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; }
+        h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+        h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+        h4 { font-size: 1.25rem; }
+        
+        p { margin-bottom: var(--space-sm); color: var(--color-muted); }
+        
+        a {
+            color: var(--color-coral);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+        
+        a:hover { color: var(--color-orchid); }
+        
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-sm);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-sm) var(--space-lg);
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:focus {
+            outline: 2px solid var(--color-orchid);
+            outline-offset: 2px;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            color: white;
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            color: var(--color-ink);
+            border: 2px solid var(--color-muted);
+        }
+        
+        .btn-ghost:hover {
+            border-color: var(--color-coral);
+            color: var(--color-coral);
+            transform: translateY(-1px);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition-smooth);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(249, 249, 249, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+                    backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(155, 93, 229, 0.1);
+            transition: var(--transition-smooth);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-sm) 0;
+        }
+        
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav {
+            display: none;
+            gap: var(--space-lg);
+        }
+        
+        .nav a {
+            color: var(--color-ink);
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: var(--transition-smooth);
+        }
+        
+        .nav a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--space-xs);
+        }
+        
+        .mobile-menu-btn span {
+            width: 24px;
+            height: 2px;
+            background: var(--color-ink);
+            transition: var(--transition-fast);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 300px;
+            height: 100vh;
+            background: white;
+            z-index: 1001;
+            transition: var(--transition-smooth);
+            padding: var(--space-xl) var(--space-lg);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .mobile-menu.open {
+            right: 0;
+        }
+        
+        .mobile-menu nav {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+        }
+        
+        .mobile-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FF5C8D' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-2xl);
+            align-items: center;
+        }
+        
+        .hero-text {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            margin-bottom: var(--space-md);
+            color: var(--color-ink);
+        }
+        
+        .hero p {
+            font-size: 1.125rem;
+            margin-bottom: var(--space-lg);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-ctas {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            align-items: center;
+        }
+        
+        .chat-simulation {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-lg);
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid #eee;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .chat-messages {
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            animation: messageSlide 0.3s ease-out;
+        }
+        
+        @keyframes messageSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message.user {
+            align-self: flex-end;
+            background: var(--color-coral);
+            color: white;
+        }
+        
+        .message.bot {
+            align-self: flex-start;
+            background: #f1f1f1;
+            color: var(--color-ink);
+        }
+        
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            padding: var(--space-xs) var(--space-sm);
+            background: #f1f1f1;
+            border-radius: var(--radius-md);
+            width: -moz-fit-content;
+            width: fit-content;
+        }
+        
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .typing-dots span {
+            width: 6px;
+            height: 6px;
+            background: var(--color-muted);
+            border-radius: 50%;
+            animation: typing 1.4s ease-in-out infinite;
+        }
+        
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-10px); opacity: 1; }
+        }
+        
+        /* Sections */
+        .section {
+            padding: var(--space-2xl) 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .section-header h2 {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .section-header p {
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Feature Highlights */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        .feature-card {
+            background: white;
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-coral);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-md);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: var(--space-xs);
+            color: var(--color-ink);
+        }
+        
+        .feature-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            margin-top: var(--space-sm);
+            padding-top: var(--space-sm);
+            border-top: 1px solid #eee;
+        }
+        
+        .feature-card.expanded .feature-details {
+            max-height: 200px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: white;
+        }
+        
+        .testimonial-carousel {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-track {
+            display: flex;
+            transition: transform var(--transition-smooth);
+        }
+        
+        .testimonial {
+            min-width: 100%;
+            text-align: center;
+            padding: var(--space-lg);
+        }
+        
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto var(--space-md);
+            background: var(--gradient-teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .testimonial blockquote {
+            font-size: 1.125rem;
+            font-style: italic;
+            margin-bottom: var(--space-md);
+            color: var(--color-ink);
+        }
+        
+        .testimonial cite {
+            font-weight: 600;
+            color: var(--color-coral);
+        }
+        
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        
+        .carousel-btn {
+            background: var(--gradient-primary);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .carousel-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .carousel-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .carousel-dots {
+            display: flex;
+            gap: var(--space-xs);
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--color-muted);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .carousel-dot.active {
+            background: var(--color-coral);
+            transform: scale(1.2);
+        }
+        
+        /* Partner Callout */
+        .partner-callout {
+            background: linear-gradient(135deg, var(--color-amber), #F4CA47);
+            text-align: center;
+            color: var(--color-ink);
+        }
+        
+        .partner-callout h2 {
+            color: var(--color-ink);
+        }
+        
+        /* How It Works */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto var(--space-md);
+        }
+        
+        /* Privacy & Ethics */
+        .privacy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        .privacy-item {
+            display: flex;
+            gap: var(--space-md);
+            padding: var(--space-lg);
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .privacy-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-md);
+            background: var(--gradient-teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        /* Community & Impact */
+        .community {
+            background: white;
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .photo-item {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: var(--gradient-hero);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-muted);
+            font-style: italic;
+        }
+        
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: var(--space-md);
+            transform: translateY(100%);
+            transition: var(--transition-smooth);
+        }
+        
+        .photo-item:hover .photo-overlay {
+            transform: translateY(0);
+        }
+        
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-xl);
+            flex-wrap: wrap;
+            opacity: 0.6;
+            transition: var(--transition-smooth);
+        }
+        
+        .partner-logo {
+            width: 120px;
+            height: 60px;
+            background: #ddd;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-muted);
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+        }
+        
+        .partner-logo:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        
+        /* FAQ */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-sm);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            width: 100%;
+            padding: var(--space-lg);
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-fast);
+        }
+        
+        .faq-question:hover {
+            background: rgba(155, 93, 229, 0.05);
+        }
+        
+        .faq-question:focus {
+            outline: 2px solid var(--color-orchid);
+            outline-offset: -2px;
+        }
+        
+        .faq-icon {
+            transition: var(--transition-fast);
+        }
+        
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+        
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+        }
+        
+        .faq-answer-content {
+            padding: 0 var(--space-lg) var(--space-lg);
+            color: var(--color-muted);
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: var(--space-xs);
+            font-weight: 600;
+            color: var(--color-ink);
+        }
+        
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: var(--space-sm);
+            border: 2px solid #e5e5e5;
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition-fast);
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--color-coral);
+            box-shadow: 0 0 0 3px rgba(255, 92, 141, 0.1);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-helper {
+            font-size: 0.875rem;
+            color: var(--color-muted);
+            margin-top: var(--space-xs);
+        }
+        
+        .form-error {
+            color: #dc2626;
+            font-size: 0.875rem;
+            margin-top: var(--space-xs);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--color-ink);
+            color: white;
+            padding: var(--space-2xl) 0 var(--space-lg);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: var(--space-md);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--space-xs);
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            transition: var(--transition-fast);
+        }
+        
+        .footer-links a:hover {
+            color: var(--color-coral);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: var(--space-sm);
+            margin-top: var(--space-sm);
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition-fast);
+        }
+        
+        .social-link:hover {
+            background: var(--color-coral);
+            transform: translateY(-2px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--space-lg);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+            z-index: 100;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-2px) scale(1.1);
+        }
+        
+        /* Responsive Design */
+        @media (min-width: 640px) {
+            .hero-ctas {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .nav {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr 1fr;
+                text-align: left;
+            }
+            
+            .hero-text {
+                text-align: left;
+            }
+            
+            .hero p {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            .hero-ctas {
+                align-items: flex-start;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .container {
+                padding: 0 var(--space-lg);
+            }
+        }
+        
+        /* Success Toast */
+        .toast {
+            position: fixed;
+            top: var(--space-lg);
+            right: var(--space-lg);
+            background: var(--gradient-teal);
+            color: white;
+            padding: var(--space-md) var(--space-lg);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            transform: translateX(100%);
+            transition: var(--transition-smooth);
+            z-index: 1002;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        /* Loading State */
+        .btn.loading {
+            position: relative;
+            color: transparent;
+        }
+        
+        .btn.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            transform: translate(-50%, -50%);
+        }
+        
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- <div class="logo">SheCare</div> -->
+                <div class="logo">
+                  <img src="images/logo.png" alt="SheCare Logo" style="height: 70px;" />
+                </div>
+                
+
+                
+                <nav class="nav">
+                    <a href="#home">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#privacy">Privacy & Ethics</a>
+                    <a href="#community">Community</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#contact">Get Involved</a>
+                </nav>
+                
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <a href="https://wa.me/REPLACE_WITH_ACTUAL_WHATSAPP_NUMBER" class="btn btn-primary" style="display: none;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.386"/>
+                        </svg>
+                        Chat with SheCare
+                    </a>
+                    
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav>
+            <a href="#home" class="mobile-nav-link">Home</a>
+            <a href="#features" class="mobile-nav-link">Features</a>
+            <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+            <a href="#privacy" class="mobile-nav-link">Privacy & Ethics</a>
+            <a href="#community" class="mobile-nav-link">Community</a>
+            <a href="#faq" class="mobile-nav-link">FAQ</a>
+            <a href="#contact" class="mobile-nav-link">Get Involved</a>
+            <a href="https://wa.me/REPLACE_WITH_ACTUAL_WHATSAPP_NUMBER" class="btn btn-primary" style="margin-top: 1rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.386"/>
+                </svg>
+                Chat with SheCare
+            </a>
+        </nav>
+    </div>
+    
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text fade-in">
+                        <h1>Your AI Health Companion, Always in Your Pocket</h1>
+                        <p>SheCare provides discreet, accessible health support for women through WhatsApp. Get personalized guidance, track symptoms, and access reliable medical information anytime, anywhere.</p>
+                        
+                        <div class="hero-ctas">
+                            <a href="https://wa.me/+254706954530" class="btn btn-primary">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.386"/>
+                                </svg>
+                                Chat with SheCare
+                            </a>
+                            <a href="#contact" class="btn btn-ghost">For Partners & Researchers</a>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-simulation fade-in">
+                        <div class="chat-header">
+                            <div class="chat-avatar">SC</div>
+                            <div>
+                                <div style="font-weight: 600;">SheCare</div>
+                                <div style="font-size: 0.8rem; color: var(--color-muted);">Online</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message bot">Hi! I'm SheCare, your personal health companion. How can I help you today?</div>
+                        </div>
+                        
+                        <div class="typing-indicator" id="typingIndicator">
+                            <div class="typing-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <button class="btn" style="font-size: 0.8rem; padding: 0.5rem 1rem; background: #f1f1f1; color: var(--color-ink);" onclick="simulateChat('period')">Track my period</button>
+                            <button class="btn" style="font-size: 0.8rem; padding: 0.5rem 1rem; background: #f1f1f1; color: var(--color-ink);" onclick="simulateChat('symptoms')">Symptom checker</button>
+                            <button class="btn" style="font-size: 0.8rem; padding: 0.5rem 1rem; background: #f1f1f1; color: var(--color-ink);" onclick="simulateChat('health')">Health tips</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Feature Highlights -->
+        <section class="section" id="features">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Comprehensive Health Support</h2>
+                    <p>Everything you need for your health journey, accessible through WhatsApp</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card fade-in" data-feature="chat">
+                        <div class="feature-icon">💬</div>
+                        <h3>24/7 AI Support</h3>
+                        <p>Get instant responses to your health questions anytime, anywhere through WhatsApp.</p>
+                        <div class="feature-details">
+                            <p>Our AI companion is trained on the latest medical research and provides evidence-based guidance for common health concerns, wellness tips, and when to seek professional care.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card fade-in" data-feature="period">
+                        <div class="feature-icon">📅</div>
+                        <h3>Period & Cycle Tracking</h3>
+                        <p>Smart tracking that learns your patterns and provides personalized insights.</p>
+                        <div class="feature-details">
+                            <p>Track your menstrual cycle, symptoms, and mood patterns. Get predictions for your next period and ovulation windows with personalized health insights.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card fade-in" data-feature="symptoms">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Symptom Assessment</h3>
+                        <p>Intelligent symptom checker that helps you understand when to seek care.</p>
+                        <div class="feature-details">
+                            <p>Describe your symptoms and get guidance on potential causes, self-care options, and recommendations for professional medical consultation when needed.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card fade-in" data-feature="wellness">
+                        <div class="feature-icon">💝</div>
+                        <h3>Personalized Wellness</h3>
+                        <p>Tailored health tips and reminders based on your unique needs.</p>
+                        <div class="feature-details">
+                            <p>Receive customized wellness advice, medication reminders, and lifestyle recommendations that adapt to your health goals and life stage.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card fade-in" data-feature="privacy">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Complete Privacy</h3>
+                        <p>Your health data is encrypted and never shared without your permission.</p>
+                        <div class="feature-details">
+                            <p>End-to-end encryption ensures your conversations remain private. We follow strict data protection protocols and give you full control over your information.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card fade-in" data-feature="resources">
+                        <div class="feature-icon">📚</div>
+                        <h3>Trusted Resources</h3>
+                        <p>Access to verified medical information and educational content.</p>
+                        <div class="feature-details">
+                            <p>Curated health resources from trusted medical organizations, including articles, videos, and guidelines specific to women's health topics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonials -->
+        <section class="section testimonials">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Trusted by Women Everywhere</h2>
+                    <p>Real experiences from our community</p>
+                </div>
+                
+                <div class="testimonial-carousel">
+                    <div class="testimonial-track" id="testimonialTrack">
+                        <div class="testimonial">
+                            <div class="testimonial-avatar">M</div>
+                            <blockquote>"SheCare helped me understand my cycle better than any app I've tried. The AI feels like talking to a knowledgeable friend."</blockquote>
+                            <cite>Maria K., Teacher</cite>
+                        </div>
+                        
+                        <div class="testimonial">
+                            <div class="testimonial-avatar">S</div>
+                            <blockquote>"I love that I can get quick answers about symptoms without feeling judged. It's so convenient through WhatsApp."</blockquote>
+                            <cite>Sarah M., Student</cite>
+                        </div>
+                        
+                        <div class="testimonial">
+                            <div class="testimonial-avatar">A</div>
+                            <blockquote>"The privacy aspect is what convinced me. Finally, a health companion that respects my data and gives me control."</blockquote>
+                            <cite>Aisha P., Healthcare Worker</cite>
+                        </div>
+                        
+                        <div class="testimonial">
+                            <div class="testimonial-avatar">L</div>
+                            <blockquote>"SheCare's wellness tips have become part of my daily routine. It's like having a personal health coach."</blockquote>
+                            <cite>Linda R., Working Mom</cite>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-controls">
+                        <button class="carousel-btn" id="prevBtn" aria-label="Previous testimonial">‹</button>
+                        <div class="carousel-dots" id="carouselDots"></div>
+                        <button class="carousel-btn" id="nextBtn" aria-label="Next testimonial">›</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Partner Callout -->
+        <section class="section partner-callout">
+            <div class="container fade-in">
+                <h2>Collaborate with SheCare</h2>
+                <p>Join us in revolutionizing women's health technology. We're looking for healthcare providers, researchers, and organizations who share our vision.</p>
+                <a href="#contact" class="btn btn-primary" style="margin-top: 1rem;">Partner with Us</a>
+            </div>
+        </section>
+        
+        <!-- How It Works -->
+        <section class="section" id="how-it-works">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>How It Works</h2>
+                    <p>Getting started with SheCare is simple and takes just minutes</p>
+                </div>
+                
+                <div class="steps">
+                    <div class="step fade-in">
+                        <div class="step-number">1</div>
+                        <h3>Start a Chat</h3>
+                        <p>Click the WhatsApp button to begin your conversation with SheCare instantly.</p>
+                    </div>
+                    
+                    <div class="step fade-in">
+                        <div class="step-number">2</div>
+                        <h3>Share Your Needs</h3>
+                        <p>Tell SheCare about your health questions, symptoms, or what you'd like to track.</p>
+                    </div>
+                    
+                    <div class="step-number">3</div>
+                        <h3>Get Personalized Support</h3>
+                        <p>Receive tailored advice, track your health patterns, and access trusted resources.</p>
+                    </div>
+                    
+                    <div class="step fade-in">
+                        <div class="step-number">4</div>
+                        <h3>Stay Connected</h3>
+                        <p>Continue your health journey with ongoing support, reminders, and insights.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Privacy & Ethics -->
+        <section class="section" id="privacy">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Privacy & Ethics First</h2>
+                    <p>Your trust is our foundation. We're committed to the highest standards of privacy and ethical AI.</p>
+                </div>
+                
+                <div class="privacy-grid">
+                    <div class="privacy-item fade-in">
+                        <div class="privacy-icon">🛡️</div>
+                        <div>
+                            <h3>End-to-End Encryption</h3>
+                            <p>All conversations are encrypted and secure. Your data stays private between you and SheCare.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="privacy-item fade-in">
+                        <div class="privacy-icon">🎯</div>
+                        <div>
+                            <h3>No Data Selling</h3>
+                            <p>We never sell your personal information. Your health data is yours, and we respect that completely.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="privacy-item fade-in">
+                        <div class="privacy-icon">⚖️</div>
+                        <div>
+                            <h3>Ethical AI</h3>
+                            <p>Our AI is trained on diverse datasets and regularly audited for bias to ensure fair and inclusive care.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="privacy-item fade-in">
+                        <div class="privacy-icon">🔍</div>
+                        <div>
+                            <h3>Transparent Algorithms</h3>
+                            <p>We're open about how our AI works and continuously improve based on user feedback and medical research.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="privacy-item fade-in">
+                        <div class="privacy-icon">👥</div>
+                        <div>
+                            <h3>User Control</h3>
+                            <p>You decide what to share and can delete your data anytime. Full control is always in your hands.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="privacy-item fade-in">
+                        <div class="privacy-icon">📋</div>
+                        <div>
+                            <h3>HIPAA Compliant</h3>
+                            <p>We follow strict healthcare privacy standards to protect your medical information at all times.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Community & Impact -->
+        <section class="section community" id="community">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Building a Healthier Future Together</h2>
+                    <p>Join a community of women taking control of their health</p>
+                </div>
+                
+                <div class="photo-grid">
+                    <div class="photo-item fade-in">
+                        <span>Diverse women supporting each other</span>
+                        <div class="photo-overlay">
+                            <p>"SheCare helped me understand my body better and feel more confident about my health decisions."</p>
+                        </div>
+                    </div>
+                    
+                    <div class="photo-item fade-in">
+                        <span>Healthcare professionals collaborating</span>
+                        <div class="photo-overlay">
+                            <p>"As a healthcare provider, I appreciate how SheCare bridges the gap between appointments."</p>
+                        </div>
+                    </div>
+                    
+                    <div class="photo-item fade-in">
+                        <span>Women of all ages engaging</span>
+                        <div class="photo-overlay">
+                            <p>"From teens to seniors, SheCare provides age-appropriate health guidance for every life stage."</p>
+                        </div>
+                    </div>
+                    
+                    <div class="photo-item fade-in">
+                        <span>Global community connection</span>
+                        <div class="photo-overlay">
+                            <p>"Breaking down barriers to healthcare access, one conversation at a time."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-header" style="margin-top: 3rem;">
+                    <h3>Trusted by Leading Organizations</h3>
+                </div>
+                
+                <div class="partner-logos fade-in">
+                    <div class="partner-logo">Health Foundation</div>
+                    <div class="partner-logo">Women's Health Alliance</div>
+                    <div class="partner-logo">Global Health Initiative</div>
+                    <div class="partner-logo">Medical Research Consortium</div>
+                    <div class="partner-logo">Digital Health Network</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ -->
+        <section class="section" id="faq">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Everything you need to know about SheCare</p>
+                </div>
+                
+                <div class="faq-list">
+                    <div class="faq-item fade-in">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-1">
+                            <span>Is SheCare a replacement for my doctor?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer" id="faq-1">
+                            <div class="faq-answer-content">
+                                <p>No, SheCare is designed to complement, not replace, professional medical care. We provide health information and support, but always recommend consulting with healthcare providers for serious concerns or diagnosis.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-2">
+                            <span>How secure is my health information?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer" id="faq-2">
+                            <div class="faq-answer-content">
+                                <p>Your privacy is our top priority. All conversations are end-to-end encrypted, we never sell your data, and we comply with HIPAA standards. You have full control over your information and can delete it anytime.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-3">
+                            <span>What types of health questions can I ask?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer" id="faq-3">
+                            <div class="faq-answer-content">
+                                <p>You can ask about menstrual health, symptoms, wellness tips, contraception information, pregnancy questions, mental health support, and general women's health topics. We're here for both everyday questions and more complex concerns.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-4">
+                            <span>Is SheCare available 24/7?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer" id="faq-4">
+                            <div class="faq-answer-content">
+                                <p>Yes! SheCare is available through WhatsApp 24 hours a day, 7 days a week. Whether you have a question at 3 AM or need support during the weekend, we're here for you.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-5">
+                            <span>How does the period tracking work?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer" id="faq-5">
+                            <div class="faq-answer-content">
+                                <p>Simply tell SheCare when your period starts and ends, along with any symptoms. Our AI learns your patterns over time and can predict future cycles, ovulation windows, and provide personalized insights about your health.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-6">
+                            <span>Can I use SheCare if I'm pregnant?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer" id="faq-6">
+                            <div class="faq-answer-content">
+                                <p>Absolutely! SheCare provides pregnancy-specific support including symptom tracking, week-by-week information, and guidance on when to contact your healthcare provider. We complement your prenatal care team.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-7">
+                            <span>How much does SheCare cost?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer" id="faq-7">
+                            <div class="faq-answer-content">
+                                <p>SheCare offers both free and premium features. Basic health support and information are free, while advanced tracking, personalized insights, and premium content are available through our affordable subscription plans.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-8">
+                            <span>Can teenagers use SheCare?</span>
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer" id="faq-8">
+                            <div class="faq-answer-content">
+                                <p>Yes, SheCare is designed to provide age-appropriate health information for teens and young adults. We provide educational content about puberty, periods, and sexual health in a safe, judgment-free environment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact / Get Involved -->
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Get Involved</h2>
+                    <p>Whether you're looking to partner with us or have questions, we'd love to hear from you</p>
+                </div>
+                
+                <div class="contact-form fade-in">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label" for="inquiryType">Type of Inquiry</label>
+                            <select class="form-select" id="inquiryType" name="inquiryType" required>
+                                <option value="">Select inquiry type</option>
+                                <option value="partnership">Healthcare Partnership</option>
+                                <option value="research">Research Collaboration</option>
+                                <option value="general">General Question</option>
+                                <option value="support">Technical Support</option>
+                                <option value="press">Media/Press</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="name">Full Name</label>
+                            <input type="text" class="form-input" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address</label>
+                            <input type="email" class="form-input" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="organization">Organization (Optional)</label>
+                            <input type="text" class="form-input" id="organization" name="organization">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message</label>
+                            <textarea class="form-textarea" id="message" name="message" required placeholder="Tell us about your inquiry or how you'd like to collaborate with SheCare..."></textarea>
+                            <div class="form-helper">Please provide as much detail as possible to help us respond effectively.</div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SheCare</h3>
+                    <p>Empowering women's health through accessible AI technology. Your trusted companion for better health decisions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#privacy">Privacy & Ethics</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Health Library</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                        <li><a href="#">Partner Portal</a></li>
+                        <li><a href="#">Developer API</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Data Protection</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 SheCare. All rights reserved. Made with 💜 for women's health.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
+    
+    <!-- Success Toast -->
+    <div class="toast" id="successToast">
+        <strong>Message sent successfully!</strong><br>
+        We'll get back to you within 24 hours.
+    </div>
+    
+    <script>
+        // Configuration
+        const config = {
+            carouselAutoplayInterval: 6000,
+            intersectionThreshold: 0.1,
+            chatSimulationDelay: 1500
+        };
+        
+        // Utility Functions
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+        
+        // Mobile Menu Functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        
+        function toggleMobileMenu() {
+            const isOpen = mobileMenu.classList.contains('open');
+            
+            mobileMenu.classList.toggle('open');
+            mobileOverlay.classList.toggle('open');
+            
+            // Focus management
+            if (!isOpen) {
+                mobileMenu.querySelector('a').focus();
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenuBtn.focus();
+                document.body.style.overflow = '';
+            }
+        }
+        
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileOverlay.addEventListener('click', toggleMobileMenu);
+        
+        // Close mobile menu when clicking nav links
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                setTimeout(toggleMobileMenu, 100);
+            });
+        });
+        
+        // ESC key to close mobile menu
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+                toggleMobileMenu();
+            }
+        });
+        
+        // Intersection Observer for Fade-in Animation
+        const observerOptions = {
+            threshold: config.intersectionThreshold,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Feature Cards Interaction
+        const featureCards = document.querySelectorAll('.feature-card');
+        
+        featureCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const isExpanded = card.classList.contains('expanded');
+                
+                // Close all cards
+                featureCards.forEach(c => c.classList.remove('expanded'));
+                
+                // Toggle current card
+                if (!isExpanded) {
+                    card.classList.add('expanded');
+                }
+            });
+            
+            // Keyboard support
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    card.click();
+                }
+            });
+        });
+        
+        // Testimonials Carousel
+        class TestimonialCarousel {
+            constructor() {
+                this.track = document.getElementById('testimonialTrack');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.dotsContainer = document.getElementById('carouselDots');
+                this.testimonials = this.track.querySelectorAll('.testimonial');
+                this.currentIndex = 0;
+                this.autoplayInterval = null;
+                
+                this.init();
+            }
+            
+            init() {
+                this.createDots();
+                this.bindEvents();
+                this.updateCarousel();
+                this.startAutoplay();
+            }
+            
+            createDots() {
+                this.testimonials.forEach((_, index) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'carousel-dot';
+                    dot.setAttribute('aria-label', `Go to testimonial ${index + 1}`);
+                    dot.addEventListener('click', () => this.goToSlide(index));
+                    this.dotsContainer.appendChild(dot);
+                });
+            }
+            
+            bindEvents() {
+                this.prevBtn.addEventListener('click', () => this.prev());
+                this.nextBtn.addEventListener('click', () => this.next());
+                
+                // Keyboard navigation
+                this.track.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.prev();
+                    if (e.key === 'ArrowRight') this.next();
+                });
+                
+                // Pause autoplay on hover
+                this.track.addEventListener('mouseenter', () => this.stopAutoplay());
+                this.track.addEventListener('mouseleave', () => this.startAutoplay());
+            }
+            
+            updateCarousel() {
+                const translateX = -this.currentIndex * 100;
+                this.track.style.transform = `translateX(${translateX}%)`;
+                
+                // Update dots
+                this.dotsContainer.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === this.currentIndex);
+                });
+                
+                // Update buttons
+                this.prevBtn.disabled = this.currentIndex === 0;
+                this.nextBtn.disabled = this.currentIndex === this.testimonials.length - 1;
+            }
+            
+            goToSlide(index) {
+                this.currentIndex = index;
+                this.updateCarousel();
+            }
+            
+            prev() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                    this.updateCarousel();
+                }
+            }
+            
+            next() {
+                if (this.currentIndex < this.testimonials.length - 1) {
+                    this.currentIndex++;
+                    this.updateCarousel();
+                }
+            }
+            
+            startAutoplay() {
+                this.stopAutoplay();
+                this.autoplayInterval = setInterval(() => {
+                    if (this.currentIndex < this.testimonials.length - 1) {
+                        this.next();
+                    } else {
+                        this.goToSlide(0);
+                    }
+                }, config.carouselAutoplayInterval);
+            }
+            
+            stopAutoplay() {
+                if (this.autoplayInterval) {
+                    clearInterval(this.autoplayInterval);
+                    this.autoplayInterval = null;
+                }
+            }
+        }
+        
+        // Initialize carousel
+        new TestimonialCarousel();
+        
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            
+            question.addEventListener('click', () => {
+                const isOpen = item.classList.contains('open');
+                
+                // Close all FAQ items
+                faqItems.forEach(faq => {
+                    faq.classList.remove('open');
+                    faq.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+                
+                // Toggle current item
+                if (!isOpen) {
+                    item.classList.add('open');
+                    question.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+        
+        // Chat Simulation
+        const chatMessages = document.getElementById('chatMessages');
+        const typingIndicator = document.getElementById('typingIndicator');
+        
+        const chatResponses = {
+            period: [
+                "I'd be happy to help you track your period! When did your last period start?",
+                "I can help you log symptoms, predict your next cycle, and provide personalized insights."
+            ],
+            symptoms: [
+                "I can help you understand your symptoms. What are you experiencing?",
+                "Please describe your symptoms and I'll provide guidance on next steps and when to seek care."
+            ],
+            health: [
+                "Here are some personalized health tips for you:",
+                "💧 Stay hydrated - aim for 8 glasses of water daily\n🥗 Include iron-rich foods in your diet\n🧘‍♀️ Try 10 minutes of meditation daily"
+            ]
+        };
+        
+        function simulateChat(type) {
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user';
+            
+            const messageText = {
+                period: 'I want to track my period',
+                symptoms: 'Can you help me check my symptoms?',
+                health: 'Give me some health tips'
+            };
+            
+            userMessage.textContent = messageText[type];
+            chatMessages.appendChild(userMessage);
+            
+            // Show typing indicator
+            typingIndicator.style.display = 'flex';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
+                
+                const responses = chatResponses[type];
+                responses.forEach((response, index) => {
+                    setTimeout(() => {
+                        const botMessage = document.createElement('div');
+                        botMessage.className = 'message bot';
+                        botMessage.textContent = response;
+                        chatMessages.appendChild(botMessage);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, index * 1000);
+                });
+            }, config.chatSimulationDelay);
+        }
+        
+        // Form Handling
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successToast = document.getElementById('successToast');
+        
+        function showToast() {
+            successToast.classList.add('show');
+            setTimeout(() => {
+                successToast.classList.remove('show');
+            }, 4000);
+        }
+        
+        function validateForm() {
+            const requiredFields = contactForm.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                const errorElement = field.parentNode.querySelector('.form-error');
+                
+                if (errorElement) {
+                    errorElement.remove();
+                }
+                
+                if (!field.value.trim()) {
+                    isValid = false;
+                    const error = document.createElement('div');
+                    error.className = 'form-error';
+                    error.textContent = 'This field is required';
+                    field.parentNode.appendChild(error);
+                }
+            });
+            
+            // Email validation
+            const emailField = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (emailField.value && !emailRegex.test(emailField.value)) {
+                isValid = false;
+                const existingError = emailField.parentNode.querySelector('.form-error');
+                if (!existingError) {
+                    const error = document.createElement('div');
+                    error.className = 'form-error';
+                    error.textContent = 'Please enter a valid email address';
+                    emailField.parentNode.appendChild(error);
+                }
+            }
+            
+            return isValid;
+        }
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                
+                // Clear form
+                contactForm.reset();
+                
+                // Show success message
+                showToast();
+                
+                // TODO: Replace with actual form submission
+                console.log('Form submitted:', new FormData(contactForm));
+            }, 2000);
+        });
+        
+        // Real-time form validation
+        const formInputs = contactForm.querySelectorAll('input, select, textarea');
+        formInputs.forEach(input => {
+            input.addEventListener('blur', () => {
+                const errorElement = input.parentNode.querySelector('.form-error');
+                if (errorElement) {
+                    errorElement.remove();
+                }
+                
+                if (input.hasAttribute('required') && !input.value.trim()) {
+                    const error = document.createElement('div');
+                    error.className = 'form-error';
+                    error.textContent = 'This field is required';
+                    input.parentNode.appendChild(error);
+                }
+            });
+        });
+        
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        function updateBackToTopVisibility() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        }
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        
+        function updateHeaderOnScroll() {
+            if (window.pageYOffset > 100) {
+                header.style.background = 'rgba(249, 249, 249, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(15, 16, 32, 0.1)';
+            } else {
+                header.style.background = 'rgba(249, 249, 249, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        }
+        
+        // Optimized scroll handler
+        const handleScroll = debounce(() => {
+            updateBackToTopVisibility();
+            updateHeaderOnScroll();
+        }, 10);
+        
+        window.addEventListener('scroll', handleScroll);
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                
+                if (target) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Show desktop WhatsApp button
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.innerWidth >= 768) {
+                const headerBtn = document.querySelector('.header .btn-primary');
+                if (headerBtn) {
+                    headerBtn.style.display = 'inline-flex';
+                }
+            }
+        });
+        
+        // Keyboard navigation improvements
+        document.addEventListener('keydown', (e) => {
+            // Tab trap for mobile menu
+            if (mobileMenu.classList.contains('open')) {
+                const focusableElements = mobileMenu.querySelectorAll('a, button');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstElement) {
+                            e.preventDefault();
+                            lastElement.focus();
+                        }
+                    } else {
+                        if (document.activeElement === lastElement) {
+                            e.preventDefault();
+                            firstElement.focus();
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Initialize animations after DOM load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Trigger initial visibility check
+            updateBackToTopVisibility();
+            updateHeaderOnScroll();
+            
+            // Add loading states
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.addEventListener('load', () => {
+                    img.style.opacity = '1';
+                });
+            });
+        });
+        
+        // Performance: Reduce animations on slower devices
+        if ('connection' in navigator && navigator.connection.effectiveType === 'slow-2g') {
+            document.body.classList.add('reduced-motion');
+        }
+        
+        // Console log for debugging
+        console.log('SheCare website loaded successfully! 🎉');
+        console.log('TODO: Replace WhatsApp links with actual number');
+        console.log('TODO: Add real favicon and OG image');
+        console.log('TODO: Replace partner logo placeholders');
+    </script>
+</body>
+</html>
