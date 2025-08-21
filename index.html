@@ -260,22 +260,26 @@ window.$RefreshSig$ = () => (type) => type;</script>
             transition: var(--transition-fast);
         }
         
+        /* Mobile menu */
         .mobile-menu {
             position: fixed;
             top: 0;
-            right: -100%;
+            right: 0; /* Keep aligned to viewport edge */
             width: 100%;
             max-width: 300px;
             height: 100vh;
             background: white;
             z-index: 1001;
-            transition: var(--transition-smooth);
             padding: var(--space-xl) var(--space-lg);
             box-shadow: var(--shadow-lg);
+        
+            /* Hidden off-screen using transform */
+            transform: translateX(100%);
+            transition: transform var(--transition-smooth);
         }
         
         .mobile-menu.open {
-            right: 0;
+            transform: translateX(0);
         }
         
         .mobile-menu nav {
