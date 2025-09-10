@@ -126,7 +126,7 @@
         }
         
         /* NAV TOGGLE BUTTON (MOBILE) */
-        .nav-toggle {
+        .mobile-menu-btn {
           display: none;
           font-size: 1.5rem;
           background: none;
@@ -155,7 +155,7 @@
             right: 0;
           }
         
-          .nav-toggle {
+          .mobile-menu-btn {
             display: block;
           }
         }
@@ -511,7 +511,7 @@
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
-        <button class="nav-toggle" aria-label="Open navigation">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open navigation">
           ☰
         </button>
       </div>
@@ -1006,13 +1006,44 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
-        // Toggle navigation icon
-        const navToggle = document.querySelector('.nav-toggle');
-      const navLinks = document.querySelector('.nav-links');
-    
-      navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('open');
-      });
+        // Mobile Menu Functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        
+        function toggleMobileMenu() {
+            const isOpen = mobileMenu.classList.contains('open');
+            
+            mobileMenu.classList.toggle('open');
+            mobileOverlay.classList.toggle('open');
+            
+            // Focus management
+            if (!isOpen) {
+                mobileMenu.querySelector('a').focus();
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenuBtn.focus();
+                document.body.style.overflow = '';
+            }
+        }
+        
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileOverlay.addEventListener('click', toggleMobileMenu);
+        
+        // Close mobile menu when clicking nav links
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                setTimeout(toggleMobileMenu, 100);
+            });
+        });
+        
+        // ESC key to close mobile menu
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+                toggleMobileMenu();
+            }
+        });
         
         // Scroll animation observer
         const observerOptions = {
