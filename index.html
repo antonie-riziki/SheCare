@@ -47,6 +47,7 @@
 
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         body {
@@ -307,30 +308,34 @@
             color: var(--white);
         }
 
-        /* TESTIMONIALS SECTION */
+        /* TESTIMONIALS SECTION FIX */
         .testimonials-section {
           background: rgba(255, 255, 255, 0.5);
-          overflow-x: hidden; /* prevent horizontal scroll leaks */
           padding: 2rem 1rem;
+          overflow-x: hidden; /* prevent horizontal scrolling */
         }
         
-        /* TESTIMONIAL CARDS CONTAINER */
-        .testimonials-section container {
+        /* CONTAINER FLEXIBLE GRID */
+        .testimonials-container {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
           gap: 1.5rem;
+          max-width: 100%;   /* don’t allow overflow */
+          box-sizing: border-box;
         }
         
         /* INDIVIDUAL CARD */
-        .testimonial-section card {
+        .testimonial-card {
           background: #fff;
           border-radius: 12px;
           padding: 1.5rem;
           box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-          width: 100%;              /* don’t overflow */
-          max-width: 100%;          /* cap to container */
-          box-sizing: border-box;   /* include padding in width */
+          width: 100%;        /* responsive width */
+          max-width: 100%;    /* force fit in mobile */
+          word-wrap: break-word; /* avoid long text breaking layout */
+          box-sizing: border-box;
         }
+
 
 
         /* Feature Icons */
@@ -763,7 +768,7 @@
 
     <!-- Testimonials Section -->
     <section id="impact" class="section testimonials-section">
-        <div class="container">
+        <div class="testimonial-container">
             <div class="text-center mb-4 animate-fade-in">
                 <h2 class="heading-font mb-3">Real Impact. Real Lives.</h2>
                 <p style="font-size: 1.1rem; color: var(--gray-600); max-width: 600px; margin: 0 auto;">
@@ -772,7 +777,7 @@
             </div>
             
             <div style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); max-width: 800px; margin: 0 auto;">
-                <div class="card animate-fade-in">
+                <div class="testimonial-card animate-fade-in">
                     <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
                         <img src="https://images.unsplash.com/photo-1668752741330-8adc5cef7485?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                              alt="Aisha M." 
@@ -787,7 +792,7 @@
                     </blockquote>
                 </div>
                 
-                <div class="card animate-fade-in" style="animation-delay: 0.2s;">
+                <div class="testimonial-card animate-fade-in" style="animation-delay: 0.2s;">
                     <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
                         <img src="https://plus.unsplash.com/premium_photo-1664910831068-a561e3657ee9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                              alt="Grace K." 
