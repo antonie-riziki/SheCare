@@ -995,11 +995,21 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
+        // Toggle navigation when clicked
         const mobileMenuBtn = document.getElementById("mobileMenuBtn");
           const mainNav = document.querySelector(".main-nav");
+          const navLinks = document.querySelectorAll(".main-nav a");
         
+          // Toggle menu open/close
           mobileMenuBtn.addEventListener("click", () => {
             mainNav.classList.toggle("open");
+          });
+        
+          // Close menu when a nav link is clicked
+          navLinks.forEach(link => {
+            link.addEventListener("click", () => {
+              mainNav.classList.remove("open");
+            });
           });
         
         // Scroll animation observer
