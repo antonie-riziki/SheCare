@@ -318,10 +318,16 @@
         /* CONTAINER FLEXIBLE GRID */
         .testimonials-container {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(768px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
           gap: 1.5rem;
           max-width: 100%;   /* don’t allow overflow */
           box-sizing: border-box;
+        }
+        
+        @media (min-width: 768px) {
+            .testimonials-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
         }
         
         /* INDIVIDUAL CARD */
@@ -768,7 +774,7 @@
 
     <!-- Testimonials Section -->
     <section id="impact" class="section testimonials-section">
-        <div class="testimonial-container">
+        <div class="testimonials-container">
             <div class="text-center mb-4 animate-fade-in">
                 <h2 class="heading-font mb-3">Real Impact. Real Lives.</h2>
                 <p style="font-size: 1.1rem; color: var(--gray-600); max-width: 600px; margin: 0 auto;">
