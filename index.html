@@ -307,10 +307,31 @@
             color: var(--white);
         }
 
+        /* TESTIMONIALS SECTION */
         .testimonials-section {
-            background: rgba(255, 255, 255, 0.5);
-            overflow-x: hidden;
+          background: rgba(255, 255, 255, 0.5);
+          overflow-x: hidden; /* prevent horizontal scroll leaks */
+          padding: 2rem 1rem;
         }
+        
+        /* TESTIMONIAL CARDS CONTAINER */
+        .testimonials-section container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 1.5rem;
+        }
+        
+        /* INDIVIDUAL CARD */
+        .testimonial-section card {
+          background: #fff;
+          border-radius: 12px;
+          padding: 1.5rem;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+          width: 100%;              /* don’t overflow */
+          max-width: 100%;          /* cap to container */
+          box-sizing: border-box;   /* include padding in width */
+        }
+
 
         /* Feature Icons */
         .feature-icon {
