@@ -316,11 +316,11 @@
         }
         
         /* CONTAINER FLEXIBLE GRID */
-        .testimonials-container {
+/*         .testimonials-container {
             display: grid;
             gap: 1.5rem;
             grid-template-columns: 1fr;
-        }
+        } */
         
         @media (min-width: 768px) {
             .testimonials-container {
@@ -1006,6 +1006,14 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
+        // Toggle navigation icon
+        const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+    
+      navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+      });
+        
         // Scroll animation observer
         const observerOptions = {
             threshold: 0.1,
