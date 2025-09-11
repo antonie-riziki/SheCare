@@ -1,9 +1,24 @@
 
 #!/usr/bin/env python3
+import sys
+sys.path.insert(1, './modules')
 
 import streamlit as st
 
 from func import get_gemini_response
+
+
+st.set_page_config(
+    page_title="SheCare",
+    page_icon="💕",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://wa.me/254743158232',
+        'Report a bug': "https://wa.me/254743158232",
+        'About': " **SheCare💕** is an AI powered assistant built for women - accessible anytime via Whatsapp. \nWe help you check symptoms, find trusted clinics, and get guidance in private, simple and supportive way. \nNo downloads, No stigma -- Just Care on your terms"
+    }
+)
 
 st.image("https://www.bbh.com/content/dam/bbh/external/www/capital-partners/private-banking/insights/closing-the-womens-health-gap/Closing%20the%20Womens%20Health%20Gap-Social.jpg", width=900)
 
@@ -33,6 +48,7 @@ if prompt := st.chat_input("How may I help?"):
         st.markdown(chat_output)
 
     st.session_state.messages.append({"role": "assistant", "content": chat_output})
+
 
 
 
