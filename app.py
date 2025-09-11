@@ -9,7 +9,7 @@ st.image("https://www.bbh.com/content/dam/bbh/external/www/capital-partners/priv
 
 # Initialize session state for chat history
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "assistant", "content": "SheCare💕 \nHow may I help you?""}]
+    st.session_state.messages = [{"role": "assistant", "content": "SheCare💕 \nHow may I help you?"}]
 
 # Display chat history
 for message in st.session_state.messages:
@@ -33,6 +33,7 @@ if prompt := st.chat_input("How may I help?"):
         st.markdown(chat_output)
 
     st.session_state.messages.append({"role": "assistant", "content": chat_output})
+
 
 
 
