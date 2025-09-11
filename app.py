@@ -1,9 +1,10 @@
 
 #!/usr/bin/env python3
 import sys
-sys.path.insert(1, './modules')
-
 import streamlit as st
+
+
+sys.path.insert(1, './modules')
 
 from func import get_gemini_response
 
@@ -48,6 +49,7 @@ if prompt := st.chat_input("How may I help?"):
         st.markdown(chat_output)
 
     st.session_state.messages.append({"role": "assistant", "content": chat_output})
+
 
 
 
