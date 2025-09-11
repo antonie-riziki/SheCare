@@ -13,7 +13,7 @@ st.set_page_config(
     page_title="SheCare",
     page_icon="💕",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="center",
     menu_items={
         'Get Help': 'https://wa.me/254743158232',
         'Report a bug': "https://wa.me/254743158232",
@@ -49,6 +49,7 @@ if prompt := st.chat_input("How may I help?"):
         st.markdown(chat_output)
 
     st.session_state.messages.append({"role": "assistant", "content": chat_output})
+
 
 
 
